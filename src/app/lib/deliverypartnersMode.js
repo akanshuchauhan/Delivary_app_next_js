@@ -1,31 +1,13 @@
-import mongoose from 'mongoose';
+const { default: mongoose } = require("mongoose");
 
-const deliveryPartnerSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    mobile: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    
+const deliveryPartnersModel = new mongoose.Schema({
+  name: String,
+  mobile: String,
+  password: String,
+  city: String,
+  address: String,
 });
 
-const DeliveryPartner = mongoose.models.DeliveryPartner || mongoose.model('DeliveryPartner', deliveryPartnerSchema);
-
-export { DeliveryPartner, deliveryPartnerSchema };
+export const deliveryPartnersSchema =
+  mongoose.models.deliverypartners ||
+  mongoose.model("deliverypartners", deliveryPartnersModel);

@@ -74,7 +74,7 @@ const CustomerHeader = (props) => {
     <div className={styles.headerWrapper}>
       <div className={styles.logo}>
         <img
-          style={{ width: 70, height:70 }}
+          style={{ width: 70, height: 70 }}
           src="https://s6.imgcdn.dev/LM5dn.png"
           alt="LM5dn.png"
           border="0"
@@ -102,13 +102,8 @@ const CustomerHeader = (props) => {
         ) : (
           <>
             <li className={styles.navItem}>
-              <Link className={styles.navLink} href="/">
-                Login
-              </Link>
-            </li>
-            <li className={styles.navItem}>
               <Link className={styles.navLink} href="/user-auth">
-                SignUp
+                Login
               </Link>
             </li>
           </>
@@ -125,7 +120,7 @@ const CustomerHeader = (props) => {
         </li>
         <li className={styles.navItem}>
           <Link className={styles.navLink} href="/deliverypartner">
-            Delivery Partner
+            Delivery Partner Login
           </Link>
         </li>
       </ul>

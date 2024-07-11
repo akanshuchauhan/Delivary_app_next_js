@@ -3,68 +3,111 @@ import { useState } from "react";
 import styles from "./styles/UserSignUp.module.css"; // Import the CSS module
 
 const UserSignUp = (props) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [city, setCity] = useState('');
-  const [address, setAddress] = useState('');
-  const [mobile, setMobile] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [mobile, setMobile] = useState("");
   const router = useRouter();
 
   const handleSignUp = async () => {
     console.log(name, email, password, confirmPassword, city, address, mobile);
-    let response = await fetch('http://localhost:3000/api/user', {
-      method: 'post',
-      body: JSON.stringify({ name, email, password, city, address, mobile })
-    })
+    let response = await fetch("http://localhost:3000/api/user", {
+      method: "post",
+      body: JSON.stringify({ name, email, password, city, address, mobile }),
+    });
     response = await response.json();
     if (response.success) {
       const { result } = response;
       delete result.password;
-      localStorage.setItem('user', JSON.stringify(result));
+      localStorage.setItem("user", JSON.stringify(result));
       if (props?.redirect?.order) {
-        router.push('/order')
+        router.push("/order");
       } else {
-        router.push('/')
+        router.push("/");
       }
-
     } else {
-      alert("failed")
+      alert("failed");
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
         <h2 className={styles.title}>Sign Up</h2>
         <div className={styles.inputWrapper}>
-          <input type="text" className={styles.inputField} value={name} onChange={(event) => setName(event.target.value)} placeholder="Enter name" />
+          <input
+            type="text"
+            className={styles.inputField}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Enter name"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="text" className={styles.inputField} value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter email" />
+          <input
+            type="text"
+            className={styles.inputField}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Enter email"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="password" className={styles.inputField} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter password" />
+          <input
+            type="password"
+            className={styles.inputField}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Enter password"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="password" className={styles.inputField} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="Confirm password" />
+          <input
+            type="password"
+            className={styles.inputField}
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+            placeholder="Confirm password"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="text" className={styles.inputField} value={city} onChange={(event) => setCity(event.target.value)} placeholder="Enter city" />
+          <input
+            type="text"
+            className={styles.inputField}
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+            placeholder="Enter city"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="text" className={styles.inputField} value={address} onChange={(event) => setAddress(event.target.value)} placeholder="Enter address" />
+          <input
+            type="text"
+            className={styles.inputField}
+            value={address}
+            onChange={(event) => setAddress(event.target.value)}
+            placeholder="Enter address"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <input type="text" className={styles.inputField} value={mobile} onChange={(event) => setMobile(event.target.value)} placeholder="Enter mobile" />
+          <input
+            type="text"
+            className={styles.inputField}
+            value={mobile}
+            onChange={(event) => setMobile(event.target.value)}
+            placeholder="Enter mobile"
+          />
         </div>
         <div className={styles.inputWrapper}>
-          <button onClick={handleSignUp} className={styles.button}>Signup</button>
+          <button onClick={handleSignUp} className={styles.button}>
+            Signup
+          </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default UserSignUp;

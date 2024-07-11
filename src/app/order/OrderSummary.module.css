@@ -1,0 +1,85 @@
+/* styles/Page.module.css */
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.orderSummary {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.userDetails {
+    margin-bottom: 30px;
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detailLabel {
+    font-weight: bold;
+    color: #333;
+}
+
+.detailValue {
+    color: #666;
+}
+
+.orderActions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.orderButton {
+    padding: 15px 30px;
+    font-size: 16px;
+    background: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.orderButton:hover {
+    background: #005bb5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .orderSummary {
+        padding: 15px;
+    }
+
+    .detailRow {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detailLabel, .detailValue {
+        padding: 5px 0;
+    }
+
+    .orderButton {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}

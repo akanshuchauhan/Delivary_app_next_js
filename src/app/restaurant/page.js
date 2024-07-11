@@ -1,31 +1,29 @@
-'use client'
+"use client";
 import { useState } from "react";
 import RestaurantLogin from "../_components/RestaurantLogin";
 import RestaurantSignUp from "../_components/RestaurantSignUp";
 import RestaurantHeader from "../_components/RestaurantHeader";
 import Footer from "../_components/Footer";
-import './style.css'
+import "./style.css";
 
 const Restaurant = () => {
-    const [login, setLogin] = useState(true)
-    return (
-        <>
-        <div className="container">
-            <RestaurantHeader />
-            <h1>Restaurant Login/Signup Page</h1>
-            {
-                login ? <RestaurantLogin /> : <RestaurantSignUp />
-            }
+  const [login, setLogin] = useState(true);
 
-            <div>
-                <button className="button-link" onClick={() => setLogin(!login)}>
-                    {login ? "Do not have account? SignUp" : "Already have Account? Login"}
-                </button>
-            </div>
-            </div>
-            <Footer />
-        </>
-    )
-}
+  return (
+    <>
+      <div  >
+        <RestaurantHeader />
+
+        <div className="form-container">
+          {login ? <RestaurantLogin /> : <RestaurantSignUp />}
+          <button className="button-link" onClick={() => setLogin(!login)}>
+            {login ? "Don't have an account? Sign Up" : "Already have an account? Log In"}
+          </button>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 export default Restaurant;

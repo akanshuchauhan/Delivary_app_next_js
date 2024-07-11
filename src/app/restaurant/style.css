@@ -1,33 +1,57 @@
-.header-wrapper{
-    display: flex;
-    justify-content: space-between;
-}
-.header-wrapper ul {
-display: flex;
-}
-
-.header-wrapper ul li {
-    list-style-type: none;
-    padding: 5px;
-
-}
-.header-wrapper ul li a{
-    text-decoration: none;
-}
-
-.header-wrapper ul li button{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: blueviolet;
-    font-size: 16px;
-}
-
-.footer-wrapper{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: var(--container-padding);
+    background-color: #dea4a4; /* Light grey background */
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(229, 124, 124, 0.1);
     text-align: center;
-    font-size: 10px;
-    background-color: #fff;
+    animation: fadeIn var(--transition-duration) ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form container styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+    background-color: #fff; /* White background */
+    padding: 20px; /* Added padding for better spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Button link styles */
+.button-link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 16px;
+    transition: color var(--transition-duration);
+}
+
+.button-link:hover {
+    color: var(--primary-color-dark);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+    }
 }

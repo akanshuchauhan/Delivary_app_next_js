@@ -1,0 +1,57 @@
+/* styles/DeliveryHeader.module.css */
+
+.headerWrapper {
+  background-color: #0070f3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logoImage {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  cursor: pointer;
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  font-size: 1rem;
+}
+
+.navLinks li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navLinks li a:hover {
+  background-color: #005bb5; /* Hover color */
+}
+
+.logoutButton {
+  cursor: pointer;
+  background-color: #f50057; /* Red color for logout */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #c51162; /* Darker red on hover */
+}

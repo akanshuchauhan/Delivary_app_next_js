@@ -8,19 +8,26 @@ const FoodItemList = () => {
     useEffect(() => {
         loadFoodItems();
     }, []);
-
-    const loadFoodItems = async () => {
-        const restaurantData= JSON.parse(localStorage.getItem('restaurantUser'));
-        const resto_id= restaurantData._id;
-        let response = await fetch("http://localhost:3000/api/restaurant/foods/"+resto_id);
-        response = await response.json();
-        if (response.success) {
-            setFoodItems(response.result)
-        } else {
-            alert("food item list not loading")
+const loadFoodItems = async () => {
+    try {
+        const restaurantData = JSON.parse(localStorage.getItem('restaurantUser'));
+        const resto_id = restaurantData._id;
+        let response = await fetch("http://localhost:3000/api/restaurant/foods/" + resto_id);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-
+        const data = await response.json();
+        if (data.success) {
+            setFoodItems(data.result);
+        } else {
+            alert("Food item list not loading");
+        }
+    } catch (error) {
+        console.error('Error fetching food items:', error);
+        alert("Error fetching food items. Please try again later.");
     }
+}
+
 
     const deleteFoodItem=async(id)=>{
         let response = await fetch('http://localhost:3000/api/restaurant/foods/'+id,{

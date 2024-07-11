@@ -1,0 +1,97 @@
+/* RestaurantSignUp.module.css */
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.inputField {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputField:focus {
+    border-color: #7191E6; /* Light blue border on focus */
+    outline: none;
+    box-shadow: 0 0 8px rgba(113, 145, 230, 0.4); /* Light blue shadow on focus */
+}
+
+.inputError {
+    border-color: #FF6347; /* Tomato red border on error */
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.4); /* Tomato red shadow on error */
+}
+
+.errorMessage {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #FF6347; /* Tomato red error message color */
+}
+
+.buttonWrapper {
+    margin-top: 20px;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3D52A1; /* Dark blue button */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #7191E6; /* Light blue on hover */
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    .heading {
+        font-size: 20px;
+    }
+
+    .button {
+        font-size: 14px;
+    }
+}

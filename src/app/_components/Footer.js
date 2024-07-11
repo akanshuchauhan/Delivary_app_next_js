@@ -1,9 +1,10 @@
-const Footer=()=>{
-    return(
-        <div className="footer-wrapper">
-            <p>All rights reserved by Resto app</p>
-        </div>
-    )
-}
+import styles from "./styles/Footer.module.css";
+const Footer = () => {
+  return (
+    <div className={styles.footer}>
+      <p>All rights reserved by @ Swagato</p>
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;

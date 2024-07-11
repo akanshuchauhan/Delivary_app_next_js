@@ -1,16 +1,35 @@
-body{
-  padding: 0;
-  margin: 0;
+:root {
+  --primary-color: #0070f3;
+  --primary-color-dark: #005bb5;
+  --error-color: #e74c3c;
+  --input-border-color: #dcdcdc;
+  --input-focus-border-color: var(--primary-color);
+  --font-family: 'Arial', sans-serif;
+  --transition-duration: 0.3s;
+  --box-shadow: rgba(0, 0, 0, 0.1);
+  --box-shadow-focus: rgba(0, 112, 243, 0.3);
+  --box-shadow-error: rgba(231, 76, 60, 0.3);
 }
-*:focus{
+
+/* Base styles for consistent font and layout */
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+*:focus {
   outline: none;
 }
-.header-wrapper{
+
+.header-wrapper {
   display: flex;
   justify-content: space-between;
 }
+
 .header-wrapper ul {
-display: flex;
+  display: flex;
 }
 
 .header-wrapper ul li {
@@ -18,11 +37,12 @@ display: flex;
   padding: 5px;
 
 }
-.header-wrapper ul li a{
+
+.header-wrapper ul li a {
   text-decoration: none;
 }
 
-.header-wrapper ul li button{
+.header-wrapper ul li button {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -30,7 +50,7 @@ display: flex;
   font-size: 16px;
 }
 
-.footer-wrapper{
+.footer-wrapper {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -40,56 +60,67 @@ display: flex;
 }
 
 
-.input-wrapper{
-margin: 10px;
+.input-wrapper {
+  margin: 10px;
 }
-.input-field{
-  width: 200px;
-  height: 30px; 
-}
-.button{
+
+.input-field {
   width: 200px;
   height: 30px;
 }
-.container{
+
+.button {
+  width: 200px;
+  height: 30px;
+}
+
+.container {
   text-align: center;
 }
-.button-link{
+
+.button-link {
   border: 0;
   cursor: pointer;
   background-color: transparent;
   color: skyblue;
   margin: 20px;
 }
-.input-error{
+
+.input-error {
   position: absolute;
   padding: 8px;
   color: red;
   font-size: 13px;
 }
-table, th, td{
-  border:  1px solid #000 ;
+
+table,
+th,
+td {
+  border: 1px solid #000;
   border-collapse: collapse;
   padding: 10px;
 }
-table td button{
+
+table td button {
   margin: 5px;
 }
+
 table img {
   width: 80px;
 }
 
-.main-page-banner,.restaurant-page-banner{
+.main-page-banner,
+.restaurant-page-banner {
   background-image: url('https://a.storyblok.com/f/88809/1150x450/30a9c4f9a6/igevia_header_fastfood01_450.jpg');
-height: 230px;
-text-align: center;
-padding: 30px;
-background-color: rgba(0, 0, 0, 0.7);
-background-blend-mode: multiply;
-color: #fff;
+  height: 230px;
+  text-align: center;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  color: #fff;
 }
 
-.main-page-banner .input-wrapper{
+.main-page-banner .input-wrapper {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #ccc;
@@ -98,18 +129,19 @@ color: #fff;
   margin: auto;
 }
 
-.main-page-banner .select-input{
+.main-page-banner .select-input {
   height: 40px;
   border: none;
   padding-left: 15px;
-width: 25%;
-  }
-.main-page-banner .search-input{
-height: 40px;
-border: none;
-padding-left: 15px;
-border-left: 1px solid #ccc;
-width: 45%;
+  width: 25%;
+}
+
+.main-page-banner .search-input {
+  height: 40px;
+  border: none;
+  padding-left: 15px;
+  border-left: 1px solid #ccc;
+  width: 45%;
 }
 
 .location-list {
@@ -123,12 +155,14 @@ width: 45%;
   margin-left: -5px;
   border: 1px solid #ccc;
 }
+
 .location-list li {
   width: 180px;
   padding: 5px;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
 }
+
 .restaurant-list-container {
   display: flex;
   flex-direction: row;
@@ -136,38 +170,46 @@ width: 45%;
   margin-top: 40px;
   margin-bottom: 50px;
 }
+
 .restaurant-wrapper {
   width: 45%;
-  background-color: orange;
+  background-color: #e9e9f5;
   margin: 10px;
   padding: 10px;
   border: 1px solid #aaa;
   border-radius: 5px;
   cursor: pointer;
 }
-.restaurant-wrapper .heading-wrapper , .restaurant-wrapper .address-wrapper{
+
+.restaurant-wrapper .heading-wrapper,
+.restaurant-wrapper .address-wrapper {
   padding-left: 15px;
   display: flex;
   justify-content: flex-start;
 }
-.restaurant-wrapper h5{
+
+.restaurant-wrapper h5 {
   margin-left: 15px;
 }
-.restaurant-wrapper .address{
+
+.restaurant-wrapper .address {
   margin-left: 5px;
 }
-.restaurant-page-banner h1{
+
+.restaurant-page-banner h1 {
   font-size: 65px;
 }
+
 .details-wrapper {
   display: flex;
   background-color: orange;
 }
-.details-wrapper h4{
-width: 50%;
+
+.details-wrapper h4 {
+  width: 50%;
 }
 
-.food-list-wrapper{
+.food-list-wrapper {
   margin-bottom: 50px;
   margin-top: 50px;
 }
@@ -180,9 +222,11 @@ width: 50%;
   display: flex;
   text-transform: capitalize;
 }
-.food-list-wrapper .list-item .description{
+
+.food-list-wrapper .list-item .description {
   font-weight: lighter;
 }
+
 .food-list-wrapper .list-item button {
   color: #fff;
   background-color: orange;
@@ -192,20 +236,24 @@ width: 50%;
   margin-top: 5px;
   border-radius: 5px;
 }
-.food-list-wrapper .list-item img{
+
+.food-list-wrapper .list-item img {
   width: 100px;
   padding-right: 20px;
 }
 
-.list-item-block-1{
+.list-item-block-1 {
   width: 20%;
 }
-.list-item-block-2{
+
+.list-item-block-2 {
   width: 60%;
 }
-.list-item-block-3{
+
+.list-item-block-3 {
   width: 20%;
 }
+
 .total-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -213,7 +261,7 @@ width: 50%;
   padding-bottom: 20px;
 }
 
-.total-wrapper .row{
+.total-wrapper .row {
   display: flex;
   justify-content: space-between;
   margin-left: 20%;
@@ -222,14 +270,16 @@ width: 50%;
   font-size: 20px;
   font-weight: bold;
 }
-.total-wrapper  .block-1{
+
+.total-wrapper .block-1 {
   width: 70%;
 }
-.total-wrapper .block-2{
+
+.total-wrapper .block-2 {
   width: 30%;
 }
 
-.total-wrapper .block-2 button{
+.total-wrapper .block-2 button {
   padding: 10px 25px;
   border: navajowhite;
   background-color: orange;
@@ -239,11 +289,12 @@ width: 50%;
 }
 
 
-.auth-container{
+.auth-container {
   display: flex;
 }
 
-.login-wrapper,.signup-wrapper{
+.login-wrapper,
+.signup-wrapper {
   height: 400px;
   border: 1px solid #ccc;
   margin: 50px;

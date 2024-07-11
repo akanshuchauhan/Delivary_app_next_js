@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
 import { DeliveryPartner } from '@/app/lib/deliverypartnersMode';
+import mongoose from 'mongoose';
 import { connectionStr } from '@/app/lib/db';
 import { NextResponse } from 'next/server';
 

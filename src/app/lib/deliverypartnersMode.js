@@ -1,15 +1,31 @@
 import mongoose from 'mongoose';
 
-const foodModel = new mongoose.Schema({
-    name: String,
-    price: Number,
-    img_path: String,
-    description: String,
-    resto_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Restaurant' // Example of referencing another collection (if needed)
-    }
+const deliveryPartnerSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    mobile: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    
 });
 
-// Check if the model already exists to prevent redefinition
-export const foodSchema = mongoose.models.foods || mongoose.model('foods', foodModel);
+const DeliveryPartner = mongoose.models.DeliveryPartner || mongoose.model('DeliveryPartner', deliveryPartnerSchema);
+
+export { DeliveryPartner, deliveryPartnerSchema };

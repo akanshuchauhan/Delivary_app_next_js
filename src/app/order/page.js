@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import CustomerHeader from '../_components/CustomerHeader';
 import Footer from '../_components/Footer';
-import { DELIVERY_CHARGES, TAX } from '../lib/constants';
+import { DELIVERY_CHARGES, TAX } from '../lib/constant';
 import { useRouter } from 'next/router';
 import styles from './OrderSummary.module.css';
 

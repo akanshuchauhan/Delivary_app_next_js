@@ -1,28 +1,35 @@
-'use client';
-import { useEffect, useState } from 'react';
-import CustomerHeader from '../_components/CustomerHeader';
-import Footer from '../_components/Footer';
-import { DELIVERY_CHARGES, TAX } from '../lib/constant';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from "react";
+import CustomerHeader from "../_components/CustomerHeader";
+import Footer from "../_components/Footer";
+import { DELIVERY_CHARGES, TAX } from "../lib/constant";
+import { useRouter } from "next/navigation";
 import styles from './OrderSummary.module.css';
 
-const OrderSummary = () => {
-    const [userStorage, setUserStorage] = useState(() => JSON.parse(localStorage.getItem('user')));
-    const [cartStorage, setCartStorage] = useState(() => JSON.parse(localStorage.getItem('cart')));
-    const [total, setTotal] = useState(() => {
-        if (cartStorage?.length === 1) {
-            return cartStorage[0].price;
-        }
-        return cartStorage?.reduce((acc, item) => acc + item.price, 0) || 0;
-    });
+const Page = () => {
+    const [userStorage, setUserStorage] = useState(null);
+    const [cartStorage, setCartStorage] = useState(null);
+    const [total, setTotal] = useState(null);
     const [removeCartData, setRemoveCartData] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cart = JSON.parse(localStorage.getItem('cart'));
+
+        setUserStorage(user);
+        setCartStorage(cart);
+
+        if (cart?.length === 1) {
+            setTotal(cart[0].price);
+        } else {
+            const totalPrice = cart?.reduce((acc, item) => acc + item.price, 0);
+            setTotal(totalPrice);
+        }
+
         if (!total) {
             router.push('/');
         }
-    }, [total]);
+    }, []);
 
     const orderNow = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -30,34 +37,35 @@ const OrderSummary = () => {
 
         const user_id = user._id;
         const city = user.city;
+        const foodItemIds = cart.map((item) => item._id).toString();
 
         let deliveryBoyResponse;
         try {
             const response = await fetch(`http://localhost:3000/api/deliverypartners/${city}`);
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error("Network response was not ok");
             }
             deliveryBoyResponse = await response.json();
         } catch (error) {
-            console.error('Error fetching delivery partners:', error);
-            alert('An error occurred. Please try again later.');
+            console.error("Error fetching delivery partners:", error);
+            alert("An error occurred. Please try again later.");
             return;
         }
 
-        const deliveryBoyIds = deliveryBoyResponse.result?.map(item => item._id) || [];
+        const deliveryBoyIds = deliveryBoyResponse.result?.map((item) => item._id) || [];
         const deliveryBoy_id = deliveryBoyIds[Math.floor(Math.random() * deliveryBoyIds.length)];
 
         if (!deliveryBoy_id) {
-            alert('Delivery partner not available.');
+            alert("Delivery partner not available.");
             return;
         }
 
         const resto_id = cart[0].resto_id;
-        const amount = total + DELIVERY_CHARGES + (total * TAX) / 100;
+        const amount = total + DELIVERY_CHARGES + (total * TAX / 100);
         const collection = {
             user_id,
             resto_id,
-            foodItemIds: cart.map(item => item._id),
+            foodItemIds,
             deliveryBoy_id,
             status: 'confirm',
             amount,
@@ -67,23 +75,27 @@ const OrderSummary = () => {
             const response = await fetch('http://localhost:3000/api/order', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(collection),
+                body: JSON.stringify(collection)
             });
             const data = await response.json();
             if (data.success) {
-                alert('Order confirmed.');
+                alert("Order confirmed.");
                 setRemoveCartData(true);
-                router.push('/myprofile');
+                router.push('myprofile');
             } else {
-                alert('Order failed. Please try again.');
+                alert("Order failed. Please try again.");
             }
         } catch (error) {
-            console.error('Error placing order:', error);
-            alert('An error occurred. Please try again later.');
+            console.error("Error placing order:", error);
+            alert("An error occurred. Please try again later.");
         }
     };
+
+    if (!userStorage || !cartStorage || !total) {
+        return null; // or a loading indicator
+    }
 
     return (
         <div className={styles.pageContainer}>
@@ -114,18 +126,16 @@ const OrderSummary = () => {
                     </div>
                     <div className={styles.detailRow}>
                         <span className={styles.detailLabel}>Total Amount: </span>
-                        <span className={styles.detailValue}>{(total + DELIVERY_CHARGES + (total * TAX) / 100).toFixed(2)}</span>
+                        <span className={styles.detailValue}>{(total + DELIVERY_CHARGES + (total * TAX / 100)).toFixed(2)}</span>
                     </div>
                     <h2>Payment Methods</h2>
                     <div className={styles.detailRow}>
                         <span className={styles.detailLabel}>Cash on Delivery: </span>
-                        <span className={styles.detailValue}>{(total + DELIVERY_CHARGES + (total * TAX) / 100).toFixed(2)}</span>
+                        <span className={styles.detailValue}>{(total + DELIVERY_CHARGES + (total * TAX / 100)).toFixed(2)}</span>
                     </div>
                 </div>
                 <div className={styles.orderActions}>
-                    <button className={styles.orderButton} onClick={orderNow}>
-                        Place your Order Now
-                    </button>
+                    <button className={styles.orderButton} onClick={orderNow}>Place your Order Now</button>
                 </div>
             </div>
             <Footer />
@@ -133,4 +143,4 @@ const OrderSummary = () => {
     );
 };
 
-export default OrderSummary;
+export default Page;

@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";

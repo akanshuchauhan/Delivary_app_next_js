@@ -18,24 +18,42 @@ export default function Home() {
   }, []);
 
   const loadLocations = async () => {
-    let response = await fetch("http://localhost:3000/api/customer/locations");
-    response = await response.json();
-    if (response.success) {
-      setLocations(response.result);
+    try {
+      let response = await fetch("http://localhost:3000/api/customer/locations");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      response = await response.json();
+      if (response.success) {
+        setLocations(response.result);
+      } else {
+        console.error("API returned unsuccessful response:", response);
+      }
+    } catch (error) {
+      console.error("Error fetching locations:", error);
     }
   };
 
   const loadRestaurants = async (params) => {
-    let url = "http://localhost:3000/api/customer";
-    if (params?.location) {
-      url = url + "?location=" + params.location;
-    } else if (params?.restaurant) {
-      url = url + "?restaurant=" + params.restaurant;
-    }
-    let response = await fetch(url);
-    response = await response.json();
-    if (response.success) {
-      setRestaurants(response.result);
+    try {
+      let url = "http://localhost:3000/api/customer";
+      if (params?.location) {
+        url = url + "?location=" + params.location;
+      } else if (params?.restaurant) {
+        url = url + "?restaurant=" + params.restaurant;
+      }
+      let response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      response = await response.json();
+      if (response.success) {
+        setRestaurants(response.result);
+      } else {
+        console.error("API returned unsuccessful response:", response);
+      }
+    } catch (error) {
+      console.error("Error fetching restaurants:", error);
     }
   };
 
@@ -43,6 +61,10 @@ export default function Home() {
     setSelectedLocation(item);
     setShowLocation(false);
     loadRestaurants({ location: item });
+  };
+
+  const handleSearchInputChange = (event) => {
+    loadRestaurants({ restaurant: event.target.value });
   };
 
   return (
@@ -68,9 +90,7 @@ export default function Home() {
           <input
             type="text"
             className="search-input"
-            onChange={(event) =>
-              loadRestaurants({ restaurant: event.target.value })
-            }
+            onChange={handleSearchInputChange}
             placeholder="Enter food or restaurant name"
           />
         </div>
@@ -78,9 +98,9 @@ export default function Home() {
       <div className="restaurant-list-container">
         {restaurants.map((item) => (
           <div
-            key={item._id} // Added a key prop for better rendering
+            key={item._id}
             onClick={() =>
-              router.push("explore/" + item.name + "?id=" + item._id)
+              router.push(`explore/${encodeURIComponent(item.name)}?id=${item._id}`)
             }
             className="restaurant-wrapper"
           >
@@ -100,4 +120,4 @@ export default function Home() {
       <Footer />
     </main>
   );
-}
+} 

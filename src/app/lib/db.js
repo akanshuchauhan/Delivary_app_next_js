@@ -1,8 +1,5 @@
 const { username, password } = process.env;
-
 export const connectionStr =
-  "mongodb+srv://" +
-  username +
-  ":" +
-  password +
-  "@cluster0.ifkil0k.mongodb.net/DeliveryApp?retryWrites=true&w=majority&appName=Cluster0";
+'mongodb+srv://akanshuchauhan2000:akanshuchauhan2000@cluster0.pwztwym.mongodb.net/restrodb?retryWrites=true&w=majority&appName=Cluster0';
+
+   

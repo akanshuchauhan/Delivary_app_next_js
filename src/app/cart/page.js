@@ -1,23 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [cartStorage, setCartStorage] = useState(
-    JSON.parse(localStorage.getItem("cart"))
-  );
-  const [total] = useState(() =>
-    cartStorage.length == 1
-      ? cartStorage[0].price
-      : cartStorage.reduce((a, b) => {
-          return a.price + b.price;
-        })
-  );
+  const [cartStorage, setCartStorage] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart) {
+      setCartStorage(storedCart);
+    }
+  }, []);
+
+  const calculateTotal = () => {
+    if (cartStorage.length === 0) {
+      return 0;
+    }
+    if (cartStorage.length === 1) {
+      return cartStorage[0].price;
+    }
+    return cartStorage.reduce((total, item) => total + item.price, 0);
+  };
+
+  const total = calculateTotal();
   const router = useRouter();
-  console.log(total);
 
   const orderNow = () => {
     if (JSON.parse(localStorage.getItem("user"))) {
@@ -26,25 +35,27 @@ const Page = () => {
       router.push("/user-auth?order=true");
     }
   };
+
+  const removeFromCart = (id) => {
+    const updatedCart = cartStorage.filter(item => item._id !== id);
+    setCartStorage(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <div>
       <CustomerHeader />
       <div className="food-list-wrapper">
         {cartStorage.length > 0 ? (
           cartStorage.map((item) => (
-            <div className="list-item">
+            <div className="list-item" key={item._id}>
               <div className="list-item-block-1">
-                <img style={{ width: 100 }} src={item.img_path} />
+                <img style={{ width: 100 }} src={item.img_path} alt={item.name} />
               </div>
               <div className="list-item-block-2">
                 <div>{item.name}</div>
-
                 <div className="description">{item.description}</div>
-                {
-                  <button onClick={() => removeFromCart(item._id)}>
-                    Remove From Cart
-                  </button>
-                }
+                <button onClick={() => removeFromCart(item._id)}>Remove From Cart</button>
               </div>
               <div className="list-item-block-3">Price: {item.price}</div>
             </div>

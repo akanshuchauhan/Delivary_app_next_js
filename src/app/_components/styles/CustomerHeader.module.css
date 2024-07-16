@@ -1,49 +1,159 @@
+/* Enhanced Header Wrapper Styles */
 .headerWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px;
-    background-color: #3D52A1; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px 30px;
+    background-color: #f776c5; /* Fourth color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.headerWrapper:hover {
+    background-color: #fc7798; /* Third color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Styles */
 .logo img {
-    width: 100px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
-    border-radius: 30px;
-    padding-left: 10px;
-    padding-top: 10%;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    border: 3px solid #e5b08f; /* Second color */
 }
 
+.logo img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    border-color: #f5d17e; /* First color */
+}
+
+/* Navigation List Styles */
 .navList {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 25px;
+    align-items: center;
 }
 
+/* Navigation Item Styles */
 .navItem {
-    margin-left: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
+/* Navigation Link Styles */
 .navLink {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navLink:hover {
-    color: #000000;
+    background-color: #e5b08f; /* Second color */
+    color: #474647; /* Fourth color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
+/* Navigation Button Styles */
 .navButton {
     background-color: transparent;
-    border: none;
-    color: white;
+    border: 2px solid #ffffff;
+    color: #ffffff;
     font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navButton:hover {
-    color: #005bb5;
+    background-color: #e5b08f; /* Second color */
+    color: #f776c5; /* Fourth color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Dropdown Menu Styles */
+.navDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f776c5; /* Fourth color */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.navItem:hover .navDropdown {
+    display: flex;
+}
+
+.navDropdownItem {
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navDropdownItem:hover {
+    background-color: #e5b08f; /* Second color */
+    color: #070707; /* Fourth color */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .headerWrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .navList {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .navItem {
+        margin-left: 0;
+    }
+
+    .navLink, .navButton {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navDropdown {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .navDropdownItem {
+        width: 100%;
+        text-align: center;
+    }
 }

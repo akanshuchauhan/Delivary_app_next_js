@@ -1,12 +1,10 @@
-/* RestaurantLogin.module.css */
-
 .container {
     max-width: 400px;
     margin: 50px auto;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    /* background-color: #bcbbbb; First color */
     text-align: center;
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -45,20 +43,20 @@
 }
 
 .inputField:focus {
-    border-color: #7191E6; /* Light blue border on focus */
+    border-color: #e5b08f; /* Second color */
     outline: none;
-    box-shadow: 0 0 8px rgba(113, 145, 230, 0.4); /* Light blue shadow on focus */
+    box-shadow: 0 0 8px rgba(229, 176, 143, 0.4); /* Second color shadow on focus */
 }
 
 .inputError {
-    border-color: #FF6347; /* Tomato red border on error */
-    box-shadow: 0 0 8px rgba(255, 99, 71, 0.4); /* Tomato red shadow on error */
+    border-color: #f56287; /* Third color */
+    box-shadow: 0 0 8px rgba(245, 98, 135, 0.4); /* Third color shadow on error */
 }
 
 .errorMessage {
     margin-top: 5px;
     font-size: 14px;
-    color: #FF6347; /* Tomato red error message color */
+    color: #f56287; /* Third color error message color */
 }
 
 .buttonWrapper {
@@ -70,7 +68,7 @@
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background-color: #3D52A1; /* Dark blue button */
+    background-color: #f776c5; /* Fourth color */
     color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -78,7 +76,7 @@
 }
 
 .button:hover {
-    background-color: #7191E6; /* Light blue on hover */
+    background-color: #e5b08f; /* Second color on hover */
     transform: scale(1.05);
 }
 

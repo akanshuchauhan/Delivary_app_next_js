@@ -1,22 +1,13 @@
 :root {
-  --primary-color: #0070f3;
-  --primary-color-dark: #005bb5;
-  --error-color: #e74c3c;
-  --input-border-color: #dcdcdc;
-  --input-focus-border-color: var(--primary-color);
-  --font-family: 'Arial', sans-serif;
-  --transition-duration: 0.3s;
-  --box-shadow: rgba(0, 0, 0, 0.1);
-  --box-shadow-focus: rgba(0, 112, 243, 0.3);
-  --box-shadow-error: rgba(231, 76, 60, 0.3);
+  --first-color: #f5d17e;
+  --second-color: #e5b08f;
+  --third-color: #fa81a0;
+  --fourth-color: #f776c5;
 }
 
-/* Base styles for consistent font and layout */
 body {
-  font-family: var(--font-family);
-  margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  margin: 0;
 }
 
 *:focus {
@@ -26,6 +17,8 @@ body {
 .header-wrapper {
   display: flex;
   justify-content: space-between;
+  background-color: var(--second-color);
+  padding: 15px;
 }
 
 .header-wrapper ul {
@@ -35,7 +28,6 @@ body {
 .header-wrapper ul li {
   list-style-type: none;
   padding: 5px;
-
 }
 
 .header-wrapper ul li a {
@@ -46,7 +38,7 @@ body {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: blueviolet;
+  color: var(--fourth-color);
   font-size: 16px;
 }
 
@@ -57,8 +49,8 @@ body {
   text-align: center;
   font-size: 10px;
   background-color: #fff;
+  padding: 10px;
 }
-
 
 .input-wrapper {
   margin: 10px;
@@ -66,12 +58,17 @@ body {
 
 .input-field {
   width: 200px;
-  height: 30px;
+  height: 30px; 
+  border: 1px solid var(--third-color);
 }
 
 .button {
   width: 200px;
   height: 30px;
+  background-color: var(--third-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 .container {
@@ -82,8 +79,10 @@ body {
   border: 0;
   cursor: pointer;
   background-color: transparent;
-  color: skyblue;
+  color: #FC7798;
   margin: 20px;
+  /* margin-bottom: 30px; */
+  padding-bottom: 10px;
 }
 
 .input-error {
@@ -93,9 +92,7 @@ body {
   font-size: 13px;
 }
 
-table,
-th,
-td {
+table, th, td {
   border: 1px solid #000;
   border-collapse: collapse;
   padding: 10px;
@@ -109,8 +106,7 @@ table img {
   width: 80px;
 }
 
-.main-page-banner,
-.restaurant-page-banner {
+.main-page-banner, .restaurant-page-banner {
   background-image: url('https://a.storyblok.com/f/88809/1150x450/30a9c4f9a6/igevia_header_fastfood01_450.jpg');
   height: 230px;
   text-align: center;
@@ -169,20 +165,22 @@ table img {
   flex-wrap: wrap;
   margin-top: 40px;
   margin-bottom: 50px;
+  
 }
-
 .restaurant-wrapper {
-  width: 45%;
-  background-color: #e9e9f5;
+  
+  background-color: var(--third-color);
   margin: 10px;
   padding: 10px;
   border: 1px solid #aaa;
   border-radius: 5px;
   cursor: pointer;
+  /* display: inline-block; Ensure the block takes full width available */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
-.restaurant-wrapper .heading-wrapper,
-.restaurant-wrapper .address-wrapper {
+
+.restaurant-wrapper .heading-wrapper, .restaurant-wrapper .address-wrapper {
   padding-left: 15px;
   display: flex;
   justify-content: flex-start;
@@ -202,7 +200,7 @@ table img {
 
 .details-wrapper {
   display: flex;
-  background-color: orange;
+  background-color: var(--third-color);
 }
 
 .details-wrapper h4 {
@@ -215,7 +213,7 @@ table img {
 }
 
 .food-list-wrapper .list-item {
-  color: orange;
+  color: var(--third-color);
   font-weight: bold;
   border-bottom: 1px solid;
   padding: 20px;
@@ -229,7 +227,7 @@ table img {
 
 .food-list-wrapper .list-item button {
   color: #fff;
-  background-color: orange;
+  background-color: var(--third-color);
   border: 0;
   padding: 10px;
   cursor: pointer;
@@ -257,7 +255,7 @@ table img {
 .total-wrapper {
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid var(--third-color);
   padding-bottom: 20px;
 }
 
@@ -266,7 +264,7 @@ table img {
   justify-content: space-between;
   margin-left: 20%;
   margin-right: 20%;
-  color: orange;
+  color: var(--third-color);
   font-size: 20px;
   font-weight: bold;
 }
@@ -282,19 +280,17 @@ table img {
 .total-wrapper .block-2 button {
   padding: 10px 25px;
   border: navajowhite;
-  background-color: orange;
+  background-color: var(--third-color);
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
 }
 
-
 .auth-container {
   display: flex;
 }
 
-.login-wrapper,
-.signup-wrapper {
+.login-wrapper, .signup-wrapper {
   height: 400px;
   border: 1px solid #ccc;
   margin: 50px;

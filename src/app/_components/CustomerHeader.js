@@ -92,6 +92,12 @@ const CustomerHeader = (props) => {
               <Link className={styles.navLink} href="/myprofile">
                 {user?.name}
               </Link>
+              <div className={styles.navDropdown}>
+                <Link className={styles.navDropdownItem} href="/order">
+                  My Orders
+                </Link>
+                 
+              </div>
             </li>
             <li className={styles.navItem}>
               <button className={styles.navButton} onClick={logout}>
@@ -114,7 +120,7 @@ const CustomerHeader = (props) => {
           </Link>
         </li>
         <li className={styles.navItem}>
-          <Link className={styles.navLink} href="/">
+          <Link className={styles.navLink} href="/restaurant">
             Add Restaurant
           </Link>
         </li>

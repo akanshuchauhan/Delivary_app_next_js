@@ -30,6 +30,7 @@ const UserLogin = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
+      <h2 className={styles.title}>User Login</h2>
         <input
           type="text"
           placeholder="enter email"

@@ -46,7 +46,7 @@ const DeliverySignUp = () => {
       <div className={styles.inputWrapper}>
         <input
           type="text"
-          placeholder="Enter name"
+          placeholder="Enter name"  
           value={name}
           onChange={(event) => setName(event.target.value)}
           className={styles.inputField}
@@ -98,7 +98,7 @@ const DeliverySignUp = () => {
         />
       </div>
       <div className={styles.inputWrapper}>
-        <button onClick={handleSignUp} className={styles.button}>Signup</button>
+        <button onClick={handleSignUp} className={styles.btn}>Signup</button>
       </div>
     </div>
   );

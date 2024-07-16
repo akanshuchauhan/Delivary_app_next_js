@@ -1,5 +1,6 @@
 "use client";
-import Image from "next/image"; 
+import Image from "next/image";
+ 
 import CustomerHeader from "./_components/CustomerHeader";
 import Footer from "./_components/Footer";
 import { useEffect, useState } from "react";
@@ -18,42 +19,24 @@ export default function Home() {
   }, []);
 
   const loadLocations = async () => {
-    try {
-      let response = await fetch("http://localhost:3000/api/customer/locations");
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      response = await response.json();
-      if (response.success) {
-        setLocations(response.result);
-      } else {
-        console.error("API returned unsuccessful response:", response);
-      }
-    } catch (error) {
-      console.error("Error fetching locations:", error);
+    let response = await fetch("http://localhost:3000/api/customer/locations");
+    response = await response.json();
+    if (response.success) {
+      setLocations(response.result);
     }
   };
 
   const loadRestaurants = async (params) => {
-    try {
-      let url = "http://localhost:3000/api/customer";
-      if (params?.location) {
-        url = url + "?location=" + params.location;
-      } else if (params?.restaurant) {
-        url = url + "?restaurant=" + params.restaurant;
-      }
-      let response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      response = await response.json();
-      if (response.success) {
-        setRestaurants(response.result);
-      } else {
-        console.error("API returned unsuccessful response:", response);
-      }
-    } catch (error) {
-      console.error("Error fetching restaurants:", error);
+    let url = "http://localhost:3000/api/customer";
+    if (params?.location) {
+      url = url + "?location=" + params.location;
+    } else if (params?.restaurant) {
+      url = url + "?restaurant=" + params.restaurant;
+    }
+    let response = await fetch(url);
+    response = await response.json();
+    if (response.success) {
+      setRestaurants(response.result);
     }
   };
 
@@ -62,11 +45,7 @@ export default function Home() {
     setShowLocation(false);
     loadRestaurants({ location: item });
   };
-
-  const handleSearchInputChange = (event) => {
-    loadRestaurants({ restaurant: event.target.value });
-  };
-
+  console.log(restaurants);
   return (
     <main>
       <CustomerHeader />
@@ -77,20 +56,22 @@ export default function Home() {
             type="text"
             value={selectedLocation}
             onClick={() => setShowLocation(true)}
-            onChange={(e) => setSelectedLocation(e.target.value)}  
             className="select-input"
             placeholder="Select Place"
           />
           <ul className="location-list">
             {showLocation &&
               locations.map((item) => (
-                <li key={item} onClick={() => handleListItem(item)}>{item}</li>
+                <li onClick={() => handleListItem(item)}>{item}</li>
               ))}
           </ul>
+
           <input
             type="text"
             className="search-input"
-            onChange={handleSearchInputChange}
+            onChange={(event) =>
+              loadRestaurants({ restaurant: event.target.value })
+            }
             placeholder="Enter food or restaurant name"
           />
         </div>
@@ -98,19 +79,19 @@ export default function Home() {
       <div className="restaurant-list-container">
         {restaurants.map((item) => (
           <div
-            key={item._id}
             onClick={() =>
-              router.push(`explore/${encodeURIComponent(item.name)}?id=${item._id}`)
+              router.push("explore/" + item.name + "?id=" + item._id)
             }
             className="restaurant-wrapper"
           >
             <div className="heading-wrapper">
               <h3>{item.name}</h3>
-              <h5>Contact: {item.contact}</h5>
+              <h5>Contact:{item.contact}</h5>
             </div>
             <div className="address-wrapper">
               <div>{item.city},</div>
               <div className="address">
+                {" "}
                 {item.address}, Email: {item.email}
               </div>
             </div>
@@ -120,4 +101,4 @@ export default function Home() {
       <Footer />
     </main>
   );
-} 
+}

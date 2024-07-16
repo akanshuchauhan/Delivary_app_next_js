@@ -36,7 +36,7 @@ const UserSignUp = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
-        <h2 className={styles.title}>Sign Up</h2>
+        <h2 className={styles.title}>User Sign Up</h2>
         <div className={styles.inputWrapper}>
           <input
             type="text"
